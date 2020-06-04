@@ -1,9 +1,11 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
 
 import * as UsersAPI from 'services/Users';
 
 
 const RegisterForm = () => {
+  const history = useHistory();
 
   const submit = (e) => {
     e.preventDefault();
@@ -14,6 +16,7 @@ const RegisterForm = () => {
     let password = document.getElementById('password').value;
     let password_confirmation = document.getElementById('password_confirmation').value;
     UsersAPI.RegisterUserRequest(first_name, last_name, username, email, password, password_confirmation)
+    .then(history.push('/signin'))
   }
 
   return (

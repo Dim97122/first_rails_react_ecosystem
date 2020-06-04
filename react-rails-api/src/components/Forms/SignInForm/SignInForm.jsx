@@ -1,14 +1,23 @@
 import React from 'react';
+import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 
+import { authenticateUser } from 'reduxx';
 import * as UsersAPI from 'services/Users';
 
 const SignInForm = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const submit = (e) => {
     e.preventDefault();
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
-    UsersAPI.SignInUserRequest(email, password);
+    UsersAPI.SignInUserRequest(email, password)
+    .then(response => {
+      dispatch(authenticateUser(response.token, response.user))
+    })
+    history.push('/')
   }
 
   return (

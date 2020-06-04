@@ -9,14 +9,25 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super {
+      @token = current_token
+      @user = current_user
+    }
+  end
+
+  def show
+  end
 
   # DELETE /resource/sign_out
   # def destroy
   #   super
   # end
+  private
+
+  def current_token
+    request.env['warden-jwt_auth.token']
+  end
 
   # protected
 
