@@ -17,7 +17,7 @@ const SignInForm = () => {
     .then(response => {
       dispatch(authenticateUser(response.token, response.user))
     })
-    history.push('/')
+    history.push('/profile')
   }
 
   return (

@@ -17,7 +17,7 @@ const userReducer = (state = initialState, action) => {
     case LOGOUT_USER:
       return {
         ...state,
-        user: action.payload.user,
+        user: "not_authenticated",
         token: undefined
       }
     default:

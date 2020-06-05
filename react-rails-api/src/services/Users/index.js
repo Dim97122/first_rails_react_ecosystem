@@ -10,6 +10,26 @@ export const DeleteUser = (user) => {
   .then(console.log("SUPPRIME"))
 }
 
+export const ModifyUserRequest = (id, first_name, last_name, username, email) => {
+  const data = {
+    user: {
+      first_name: first_name,
+      last_name: last_name,
+      username: username,
+      email: email,
+    }
+  }
+  const url = 'http://localhost:3000/users/' + id + '.json'
+  return fetch(url, {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => console.log(response))
+}
+
 export const Logout = () => {
   fetch('http://localhost:3000/users/sign_out.json', {
     method: 'delete',

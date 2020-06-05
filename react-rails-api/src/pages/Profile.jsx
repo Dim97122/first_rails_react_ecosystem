@@ -1,6 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
+
+import UserForm from 'components/Forms/UserForm';
+
 import { logoutUser } from 'reduxx';
 
 import * as UsersAPI from 'services/Users';
@@ -24,6 +27,7 @@ const Profile = () => {
         <h3>Date d'inscription: {creationDate}</h3>
         <button className="nav-item nav-link" onClick={()=> deleteUser(user)}>Delete User</button>
       </div>
+      < UserForm user={user} />
     </>
   )
 }
